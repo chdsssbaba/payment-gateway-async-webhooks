@@ -24,7 +24,7 @@
 
 <div align="center">
 
-[![Watch Demo Video](https://img.youtube.com/vi/lhc3sLB0hsU/maxresdefault.jpg)](https://youtu.be/lhc3sLB0hsU)
+[![Watch Demo Video](https://img.youtube.com/vi/lhc3sLB0hsU/hqdefault.jpg)](https://youtu.be/lhc3sLB0hsU)
 
 *👆 Click the thumbnail to watch the full demo on YouTube*
 
