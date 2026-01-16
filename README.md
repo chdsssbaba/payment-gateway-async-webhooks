@@ -22,7 +22,13 @@
 
 ## 🎬 Demo Video
 
-Watch the full demo on YouTube: [https://youtu.be/lhc3sLB0hsU](https://youtu.be/lhc3sLB0hsU)
+<div align="center">
+
+[![Watch Demo Video](https://img.youtube.com/vi/lhc3sLB0hsU/maxresdefault.jpg)](https://youtu.be/lhc3sLB0hsU)
+
+*👆 Click the thumbnail to watch the full demo on YouTube*
+
+</div>
 
 ---
 
