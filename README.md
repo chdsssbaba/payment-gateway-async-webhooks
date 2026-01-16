@@ -461,8 +461,8 @@ mindmap
 
 ```bash
 # Clone repository
-git clone https://github.com/shahanth4444/payment-gateway-async-pro.git
-cd payment-gateway-async-pro
+git clone https://github.com/chdsssbaba/payment-gateway-async-webhooks.git
+cd payment-gateway-async-webhooks
 
 # Start all services
 docker-compose up -d
@@ -1119,18 +1119,5 @@ docker-compose up -d
 
 MIT
 
-## 👤 Author
-
-**Shahanth** - [GitHub](https://github.com/shahanth4444)
-
----
-
-## 🎯 Repository
-
-**GitHub:** https://github.com/shahanth4444/payment-gateway-async-pro
-
----
-
-Built with ❤️ using Node.js, Express, Bull, PostgreSQL, Redis, and React
 
 **Payment Gateway Async Webhooks** | **Production-Ready** | **Scalable** | **Secure**
