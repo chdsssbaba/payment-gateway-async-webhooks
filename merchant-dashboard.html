@@ -1,0 +1,399 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merchant Dashboard - Create Orders</title>
+    <style>
+        /* ===== Modern Blue Gradient Glassmorphism Theme ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: linear-gradient(135deg, #0c1445 0%, #1a237e 25%, #283593 50%, #3949ab 75%, #5c6bc0 100%);
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 15% 25%, rgba(99, 102, 241, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 85% 75%, rgba(59, 130, 246, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(99, 102, 241, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -150px;
+            left: -150px;
+            animation: floatOrb 10s ease-in-out infinite;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        @keyframes floatOrb {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(40px, -40px) scale(1.15); }
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 45px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), inset 0 1px 1px rgba(255, 255, 255, 0.1);
+            animation: slideUp 0.6s ease-out;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 50%, #f472b6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        .info-box {
+            background: rgba(245, 158, 11, 0.15);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #f59e0b;
+            padding: 18px 20px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        .info-box strong { color: #fcd34d; }
+
+        .form-section {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            padding: 35px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+
+        .form-section h2 {
+            color: #ffffff;
+            margin-bottom: 25px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .form-group { margin-bottom: 24px; }
+
+        label {
+            display: block;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 12px;
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder { color: rgba(255, 255, 255, 0.4); }
+
+        input:focus {
+            outline: none;
+            border-color: rgba(139, 92, 246, 0.6);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.15);
+        }
+
+        .create-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #a855f7 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .create-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+        }
+
+        .status {
+            padding: 16px 20px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+            display: none;
+            font-size: 15px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+        }
+
+        .status.success {
+            background: rgba(16, 185, 129, 0.2);
+            color: #6ee7b7;
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            display: block;
+        }
+
+        .status.error {
+            background: rgba(239, 68, 68, 0.2);
+            color: #fca5a5;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            display: block;
+        }
+
+        .orders-list { margin-top: 35px; }
+
+        .orders-list h2 {
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 22px;
+            font-weight: 700;
+        }
+
+        .order-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .order-card:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.12);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .order-info { flex: 1; }
+
+        .order-id {
+            font-weight: 600;
+            color: #60a5fa;
+            margin-bottom: 8px;
+            font-size: 13px;
+        }
+
+        .order-amount {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 6px;
+        }
+
+        .order-customer {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 14px;
+        }
+
+        .checkout-link {
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .checkout-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            border: 1px dashed rgba(255, 255, 255, 0.15);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Merchant Dashboard</h1>
+        <p class="subtitle">Create orders without coding - No technical knowledge required!</p>
+
+        <div class="info-box">
+            <strong>How to use:</strong><br>
+            1. Enter amount and customer name<br>
+            2. Click "Create Order"<br>
+            3. Share the checkout link with your customer<br>
+            4. Customer pays on the checkout page<br>
+            5. You receive webhook notification
+        </div>
+
+        <div class="form-section">
+            <h2>Create New Order</h2>
+
+            <div class="form-group">
+                <label for="amount">Amount (INR)</label>
+                <input type="number" id="amount" placeholder="Enter amount (e.g., 500)" min="1" step="0.01">
+            </div>
+
+            <div class="form-group">
+                <label for="customerName">Customer Name (Optional)</label>
+                <input type="text" id="customerName" placeholder="Enter customer name">
+            </div>
+
+            <button class="create-btn" onclick="createOrder()">
+                Create Order & Get Checkout Link
+            </button>
+        </div>
+
+        <div id="status" class="status"></div>
+
+        <div class="orders-list">
+            <h2>Recent Orders</h2>
+            <div id="ordersList"></div>
+        </div>
+    </div>
+
+    <script>
+        const orders = [];
+
+        async function createOrder() {
+            const amount = document.getElementById('amount').value;
+            const customerName = document.getElementById('customerName').value || 'Customer';
+            const statusDiv = document.getElementById('status');
+
+            if (!amount || amount <= 0) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = 'Please enter a valid amount';
+                return;
+            }
+
+            statusDiv.className = 'status success';
+            statusDiv.textContent = 'Creating order...';
+
+            try {
+                const amountInPaise = Math.round(parseFloat(amount) * 100);
+
+                const response = await fetch('http://localhost:8000/api/v1/orders', {
+                    method: 'POST',
+                    headers: {
+                        'X-Api-Key': 'key_test_abc123',
+                        'X-Api-Secret': 'secret_test_xyz789',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        amount: amountInPaise,
+                        currency: 'INR',
+                        receipt: customerName + '_' + Date.now()
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to create order');
+                }
+
+                const order = await response.json();
+
+                orders.unshift({
+                    id: order.id,
+                    amount: amount,
+                    customerName: customerName,
+                    checkoutUrl: 'http://localhost:3001/?order_id=' + order.id
+                });
+
+                statusDiv.className = 'status success';
+                statusDiv.textContent = 'Order created successfully! Order ID: ' + order.id;
+
+                document.getElementById('amount').value = '';
+                document.getElementById('customerName').value = '';
+
+                displayOrders();
+
+            } catch (error) {
+                statusDiv.className = 'status error';
+                statusDiv.textContent = 'Error: ' + error.message;
+            }
+        }
+
+        function displayOrders() {
+            const ordersList = document.getElementById('ordersList');
+
+            if (orders.length === 0) {
+                ordersList.innerHTML = '<div class="empty-state">No orders yet. Create your first order above!</div>';
+                return;
+            }
+
+            ordersList.innerHTML = orders.map(function(order) {
+                return '<div class="order-card"><div class="order-info"><div class="order-id">Order ID: ' + order.id + '</div><div class="order-amount">INR ' + order.amount + '</div><div class="order-customer">Customer: ' + order.customerName + '</div></div><a href="' + order.checkoutUrl + '" target="_blank" class="checkout-link">Open Checkout</a></div>';
+            }).join('');
+        }
+
+        displayOrders();
+    </script>
+</body>
+
+</html>
