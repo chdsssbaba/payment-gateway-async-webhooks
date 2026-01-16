@@ -14,7 +14,15 @@
 [![Docker](https://img.shields.io/badge/Docker-Compose-2496ED?style=flat-square&logo=docker&logoColor=white)](https://docs.docker.com/compose/)
 [![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=black)](https://reactjs.org/)
 
+[![YouTube Demo](https://img.shields.io/badge/YouTube-Demo%20Video-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](https://youtu.be/lhc3sLB0hsU)
+
 </div>
+
+---
+
+## 🎬 Demo Video
+
+Watch the full demo on YouTube: [https://youtu.be/lhc3sLB0hsU](https://youtu.be/lhc3sLB0hsU)
 
 ---
 
